@@ -90,6 +90,8 @@ public class AddEditNoteActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.edit_text_title);
         editTextDescription = findViewById(R.id.edit_text_description);
 
+        editTextTitle.requestFocus();
+
         editTextDescription.setHintEnabled(false);
 
 

@@ -1,6 +1,7 @@
 package com.pomtech.noteappmvvm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -33,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class MainActivity extends AppCompatActivity {
@@ -97,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_main);
+
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
+            showInformationToast();
+        }
 
         coordinatorLayout = findViewById(R.id.main);
         Toolbar main_toolbar = findViewById(R.id.toolbar);
@@ -207,6 +216,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showInformationToast() {
+        Toasty.info(this, "برای پاک کردن هر یادداشت, آن را از راست به چپ بکشید", Toast.LENGTH_LONG, true).show();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
     }
 
 
