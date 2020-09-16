@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layoutDirection="rtl"
+    android:background="@color/background_material_light"
     tools:context=".AddEditNoteActivity">
 
     <include
@@ -40,7 +39,6 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="17sp" />
 
-            <requestFocus />
 
         </com.google.android.material.textfield.TextInputLayout>
         <View

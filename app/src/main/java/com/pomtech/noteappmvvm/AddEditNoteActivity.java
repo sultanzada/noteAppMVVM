@@ -2,6 +2,7 @@ package com.pomtech.noteappmvvm;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,17 +11,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.r0adkll.slidr.Slidr;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
 
 public class AddEditNoteActivity extends AppCompatActivity {
     public static final String EXTRA_TITLE =
@@ -70,12 +75,22 @@ public class AddEditNoteActivity extends AppCompatActivity {
                 getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_add_note);
 
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
+            showInformationToast();
+        }
+
+        Slidr.attach(this);
+
         Toolbar addEdit_note_toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(addEdit_note_toolbar);
 
         editTextTitle = findViewById(R.id.edit_text_title);
         editTextDescription = findViewById(R.id.edit_text_description);
 
+        editTextTitle.requestFocus();
 
         editTextDescription.setHintEnabled(false);
 
@@ -91,6 +106,15 @@ public class AddEditNoteActivity extends AppCompatActivity {
         } else {
             getSupportActionBar().setTitle(R.string.new_note);
         }
+    }
+
+    private void showInformationToast() {
+        Toasty.info(this, "برای رفتن به صفحه اصلی, صفحه را به سمت چپ بکشید", Toast.LENGTH_LONG, true).show();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
     }
 
     private void saveNote() {
