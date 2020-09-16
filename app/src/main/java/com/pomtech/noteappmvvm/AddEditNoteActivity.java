@@ -90,8 +90,6 @@ public class AddEditNoteActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.edit_text_title);
         editTextDescription = findViewById(R.id.edit_text_description);
 
-        editTextTitle.requestFocus();
-
         editTextDescription.setHintEnabled(false);
 
 
@@ -109,7 +107,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
     }
 
     private void showInformationToast() {
-        Toasty.info(this, "برای رفتن به صفحه اصلی, صفحه را به سمت چپ بکشید", Toast.LENGTH_LONG, true).show();
+        Toasty.info(this, "برای رفتن به صفحه اصلی, صفحه را از سمت چپ به سمت راست بکشید", Toast.LENGTH_LONG, true).show();
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout = findViewById(R.id.main);
         Toolbar main_toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(main_toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.list_of_notes);
 
         final LinearLayout no_content_layout = findViewById(R.id.no_content_layout);
 
