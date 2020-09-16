@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name"><b>یادداشت</b></string>
+    <string name="save"><b>ذخیره</b></string>
+    <string name="edit_note">ویرایش یادداشت</string>
+    <string name="new_note">یادداشت جدید</string>
+    <string name="undo">باطل کردن</string>
+    <string name="deleted_note">یادداشت پاک شد</string>
+    <string name="delete_all_notes">حذف تمام یادداشت ها</string>
+</resources>
